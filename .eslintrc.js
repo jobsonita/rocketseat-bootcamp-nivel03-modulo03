@@ -3,4 +3,9 @@ module.exports = {
   extends: '@react-native-community',
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
+  rules: {
+    '@typescript-eslint/no-unused-vars': ['warn'],
+    'object-curly-spacing': ['error', 'always'],
+    semi: 'off'
+  }
 };

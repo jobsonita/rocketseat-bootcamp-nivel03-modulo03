@@ -51,6 +51,12 @@ ou, se você possuir um dispositivo ou emulador do ios:
 yarn ios
 ```
 
+Após a primeira execução, nas próximas vezes, basta executar:
+
+```
+yarn start
+```
+
 ## Comandos utilizados na construção do projeto
 
 Caso deseje criar um projeto do zero seguindo os passos dos commits, listo abaixo os comandos executados neste projeto.
