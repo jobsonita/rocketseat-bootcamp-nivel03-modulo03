@@ -51,12 +51,6 @@ ou, se você possuir um dispositivo ou emulador do ios:
 yarn ios
 ```
 
-Após a primeira execução, nas próximas vezes, basta executar:
-
-```
-yarn start
-```
-
 ## Comandos utilizados na construção do projeto
 
 Caso deseje criar um projeto do zero seguindo os passos dos commits, listo abaixo os comandos executados neste projeto.
@@ -140,4 +134,12 @@ Em seguida, proceder com os passos de [hello-react-navigation](https://reactnavi
 
 ```
 yarn add @react-navigation/stack
+```
+
+#### Aula 06
+
+Após criar a pasta assets/fonts com as fontes a serem usadas, e criar um arquivo react-native.config-js apontando para essa pasta, executar:
+
+```
+yarn react-native link
 ```

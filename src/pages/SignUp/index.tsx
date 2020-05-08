@@ -4,7 +4,7 @@ import { View } from 'react-native'
 import { Container } from './styles'
 
 const SignUp: React.FC = () => {
-  return <View />
+  return <Container />
 }
 
 export default SignUp
