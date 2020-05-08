@@ -20,7 +20,7 @@ Este projeto deve ser utilizado em conjunto com o back-end desenvolvido ao longo
 
 Para uso em smartphones com o sistema Android, recomendo usar Python2, JDK8 e [Android Studio](https://developer.android.com/studio), conforme o [guia de configuração da Rocketseat](https://react-native.rocketseat.dev).
 
-Para uso em smartphones com o sistema iOS, siga o [guia de configuração da Rocketseat](https://react-native.rocketseat.dev).
+Para uso em smartphones com o sistema iOS, siga o [guia de configuração da Rocketseat](https://react-native.rocketseat.dev). É necessário ter o pacote [cocoapods](https://cocoapods.org) instalado no seu Mac.
 
 ## Bibliotecas e ferramentas utilizadas
 
@@ -112,4 +112,32 @@ yarn add -D eslint-config-standard eslint-config-standard-react @typescript-esli
 yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
 
 yarn add eslint-import-resolver-typescript -D
+```
+
+#### Aula 04
+
+```
+yarn add styled-components
+yarn add @types/styled-components -D
+```
+
+Instalar o react-navigation segundo os passos indicados na [documentação](https://reactnavigation.org/docs/getting-started/):
+
+```
+yarn add @react-navigation/native
+yarn add react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
+```
+
+Se estiver desenvolvendo para iOS no Mac, executar:
+
+```
+npx pod-install ios
+```
+
+Finalmente, independente do dispositivo alvo, importar `react-native-gesture-handler` como primeira importação no ponto de entrada da aplicação (src/App.tsx).
+
+Em seguida, proceder com os passos de [hello-react-navigation](https://reactnavigation.org/docs/hello-react-navigation):
+
+```
+yarn add @react-navigation/stack
 ```
