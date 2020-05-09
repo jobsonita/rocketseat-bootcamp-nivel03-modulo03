@@ -56,14 +56,22 @@ const SignUp: React.FC = () => {
   useEffect(() => {
     if (Platform.OS !== 'ios') {
       Keyboard.addListener('keyboardDidShow', _keyboardShown)
+    }
+
+    return () => {
+      Keyboard.removeListener('keyboardDidShow', _keyboardShown)
+    }
+  }, [_keyboardShown])
+
+  useEffect(() => {
+    if (Platform.OS !== 'ios') {
       Keyboard.addListener('keyboardDidHide', _keyboardHidden)
     }
 
     return () => {
-      Keyboard.removeListener('keyboardDidShow', () => _keyboardShown)
-      Keyboard.removeListener('keyboardDidHide', () => _keyboardHidden)
+      Keyboard.removeListener('keyboardDidHide', _keyboardHidden)
     }
-  }, [_keyboardHidden, _keyboardShown])
+  }, [_keyboardHidden])
 
   const handleSubmit = useCallback(
     async ({ name, email, password }: SignUpFormData): Promise<void> => {
