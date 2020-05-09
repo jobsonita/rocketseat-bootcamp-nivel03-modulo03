@@ -29,6 +29,7 @@ Para uso em smartphones com o sistema iOS, siga o [guia de configuração da Roc
 - eslint + prettier (padronização de código)
 - styled-components (estilização de componentes)
 - react-native-vector-icons (biblioteca de ícones)
+- unform (controle otimizado de forms)
 - react-navigation (roteamento de páginas)
 - [VS Code](https://code.visualstudio.com) (editor de código preferido)
 
@@ -186,4 +187,10 @@ yarn add -D @types/react-native-vector-icons
 
 ```
 yarn add react-native-iphone-x-helper
+```
+
+#### Aula 04
+
+```
+yarn add @unform/core @unform/mobile
 ```
