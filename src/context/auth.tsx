@@ -21,6 +21,7 @@ interface SignInCredentials {
 }
 
 interface AuthContextData {
+  loading: boolean
   user: object
   signIn(credentials: SignInCredentials): Promise<void>
   signOut(): void
@@ -30,6 +31,7 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>({} as AuthState)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     AsyncStorage.multiGet(['@GoBarber:token', '@GoBarber:user']).then(
@@ -39,6 +41,8 @@ export const AuthProvider: React.FC = ({ children }) => {
         if (token && user) {
           setData({ token, user: JSON.parse(user) })
         }
+
+        setLoading(false)
       }
     )
   }, [])
@@ -63,7 +67,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
+    <AuthContext.Provider value={{ loading, user: data.user, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   )
