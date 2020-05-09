@@ -6,6 +6,8 @@
 
 Baseado nas aulas do curso [GoStack](https://rocketseat.com.br/gostack) (turma 11) da Rocketseat.
 
+<p align="center"><img alt="Demonstração do app mobile" title="Páginas de cadastro e acesso" src=".github/demo.gif" width="200px" /></p>
+
 ## Sobre este projeto
 
 Este projeto é um front-end mobile em React-Native usando as bibliotecas react-native e typescript.
