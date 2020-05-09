@@ -7,6 +7,8 @@ import {
   ScrollView,
   View,
 } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+
 import Icon from 'react-native-vector-icons/Feather'
 
 import logoImg from '../../assets/logo.png'
@@ -24,6 +26,8 @@ import {
 } from './styles'
 
 const SignIn: React.FC = () => {
+  const navigation = useNavigation()
+
   const [keyboardOpen, setKeyboardOpen] = useState(false)
 
   const _keyboardShown = useCallback(() => setKeyboardOpen(true), [])
@@ -73,7 +77,7 @@ const SignIn: React.FC = () => {
       </KeyboardAvoidingView>
 
       {(Platform.OS === 'ios' || !keyboardOpen) && (
-        <CreateAccountButton onPress={() => console.log('Cadastrar')}>
+        <CreateAccountButton onPress={() => navigation.navigate('SignUp')}>
           <Icon name="log-in" size={20} color="#ff9000" />
           <CreateAccountButtonText>Criar uma conta</CreateAccountButtonText>
         </CreateAccountButton>
