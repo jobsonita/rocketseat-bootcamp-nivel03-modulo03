@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
+  Alert,
   Image,
   Keyboard,
   KeyboardAvoidingView,
@@ -13,6 +14,7 @@ import { useNavigation } from '@react-navigation/native'
 import { FormHandles } from '@unform/core'
 import { Form } from '@unform/mobile'
 import Icon from 'react-native-vector-icons/Feather'
+import * as Yup from 'yup'
 
 import logoImg from '../../assets/logo.png'
 
@@ -27,6 +29,20 @@ import {
   ForgotPasswordText,
   Title,
 } from './styles'
+
+import getValidationErrors from '../../utils/getValidationErrors'
+
+interface SignInFormData {
+  email: string
+  password: string
+}
+
+const schema = Yup.object().shape({
+  email: Yup.string()
+    .required('E-mail obrigatório')
+    .email('Digite um e-mail válido'),
+  password: Yup.string().required('Senha obrigatória'),
+})
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null)
@@ -51,9 +67,25 @@ const SignIn: React.FC = () => {
     }
   }, [_keyboardHidden, _keyboardShown])
 
-  const handleSignIn = useCallback((data: object) => {
-    console.log(data)
-  }, [])
+  const handleSubmit = useCallback(
+    async ({ email, password }: SignInFormData): Promise<void> => {
+      formRef.current?.setErrors({})
+
+      try {
+        await schema.validate({ email, password }, { abortEarly: false })
+      } catch (error) {
+        if (error instanceof Yup.ValidationError) {
+          formRef.current?.setErrors(getValidationErrors(error))
+        } else {
+          Alert.alert(
+            'Falha na autenticação',
+            'Verifique suas credenciais e tente novamente'
+          )
+        }
+      }
+    },
+    []
+  )
 
   return (
     <>
@@ -73,7 +105,7 @@ const SignIn: React.FC = () => {
               <Title>Faça seu logon</Title>
             </View>
 
-            <Form ref={formRef} onSubmit={handleSignIn}>
+            <Form ref={formRef} onSubmit={handleSubmit}>
               <Input
                 name="email"
                 keyboardType="email-address"

@@ -30,6 +30,7 @@ Para uso em smartphones com o sistema iOS, siga o [guia de configuração da Roc
 - styled-components (estilização de componentes)
 - react-native-vector-icons (biblioteca de ícones)
 - unform (controle otimizado de forms)
+- yup (validação de dados)
 - react-navigation (roteamento de páginas)
 - [VS Code](https://code.visualstudio.com) (editor de código preferido)
 
@@ -193,4 +194,11 @@ yarn add react-native-iphone-x-helper
 
 ```
 yarn add @unform/core @unform/mobile
+```
+
+#### Aula 07
+
+```
+yarn add yup
+yarn add @types/yup -D
 ```
