@@ -181,3 +181,9 @@ Finalmente, independente do dispositivo alvo:
 ```
 yarn add -D @types/react-native-vector-icons
 ```
+
+#### Aula 02
+
+```
+yarn add react-native-iphone-x-helper
+```
