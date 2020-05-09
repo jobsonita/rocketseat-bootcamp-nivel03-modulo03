@@ -210,3 +210,11 @@ yarn add @types/yup -D
 ```
 yarn add axios
 ```
+
+#### Aula 02
+
+```
+yarn add @react-native-community/async-storage
+```
+
+No iOS, executar `npx pod-install ios`.

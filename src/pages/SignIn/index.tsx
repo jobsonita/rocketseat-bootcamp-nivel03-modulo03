@@ -21,6 +21,8 @@ import logoImg from '../../assets/logo.png'
 import Button from '../../components/Button'
 import Input from '../../components/Input'
 
+import { useAuth } from '../../context/auth'
+
 import {
   Container,
   CreateAccountButton,
@@ -29,6 +31,8 @@ import {
   ForgotPasswordText,
   Title,
 } from './styles'
+
+import { ApiError } from '../../services/api'
 
 import getValidationErrors from '../../utils/getValidationErrors'
 
@@ -47,6 +51,8 @@ const schema = Yup.object().shape({
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null)
   const passwordInputRef = useRef<TextInput>(null)
+
+  const { signIn } = useAuth()
 
   const navigation = useNavigation()
 
@@ -73,18 +79,27 @@ const SignIn: React.FC = () => {
 
       try {
         await schema.validate({ email, password }, { abortEarly: false })
+
+        await signIn({ email, password })
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           formRef.current?.setErrors(getValidationErrors(error))
-        } else {
+        } else if (error.message === 'Network Error') {
           Alert.alert(
-            'Falha na autenticação',
-            'Verifique suas credenciais e tente novamente'
+            'Falha na requisição',
+            'Verifique sua conexão com a internet'
+          )
+        } else {
+          const { response } = error as ApiError
+          Alert.alert(
+            response?.data.title || 'Falha na autenticação',
+            response?.data.message ||
+              'Verifique suas credenciais e tente novamente'
           )
         }
       }
     },
-    []
+    [signIn]
   )
 
   return (
