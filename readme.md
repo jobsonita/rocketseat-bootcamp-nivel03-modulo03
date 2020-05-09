@@ -202,3 +202,11 @@ yarn add @unform/core @unform/mobile
 yarn add yup
 yarn add @types/yup -D
 ```
+
+### Sessão 03
+
+#### Aula 01
+
+```
+yarn add axios
+```

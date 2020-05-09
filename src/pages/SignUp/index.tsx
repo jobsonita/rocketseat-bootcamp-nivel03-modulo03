@@ -23,6 +23,8 @@ import Input from '../../components/Input'
 
 import { Container, BackToSignIn, BackToSignInText, Title } from './styles'
 
+import api, { ApiError } from '../../services/api'
+
 import getValidationErrors from '../../utils/getValidationErrors'
 
 interface SignUpFormData {
@@ -69,18 +71,34 @@ const SignUp: React.FC = () => {
 
       try {
         await schema.validate({ name, email, password }, { abortEarly: false })
+
+        await api.post('users', { name, email, password })
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           formRef.current?.setErrors(getValidationErrors(error))
-        } else {
+        } else if (error.message === 'Network Error') {
           Alert.alert(
-            'Falha na autenticação',
-            'Verifique suas credenciais e tente novamente'
+            'Falha na requisição',
+            'Verifique sua conexão com a internet'
+          )
+        } else {
+          const { response } = error as ApiError
+          Alert.alert(
+            response?.data.title || 'Falha no cadastro',
+            response?.data.message || 'Verifique os dados e tente novamente'
           )
         }
+        return
       }
+
+      Alert.alert(
+        'Cadastro realizado com sucesso!',
+        'Você já pode fazer login na aplicação'
+      )
+
+      navigation.goBack()
     },
-    []
+    [navigation]
   )
 
   return (
