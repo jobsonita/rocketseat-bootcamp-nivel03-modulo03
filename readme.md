@@ -27,6 +27,9 @@ Para uso em smartphones com o sistema iOS, siga o [guia de configuração da Roc
 - react-native
 - typescript
 - eslint + prettier (padronização de código)
+- styled-components (estilização de componentes)
+- react-native-vector-icons (biblioteca de ícones)
+- react-navigation (roteamento de páginas)
 - [VS Code](https://code.visualstudio.com) (editor de código preferido)
 
 ## Instalação e execução
@@ -142,4 +145,39 @@ Após criar a pasta assets/fonts com as fontes a serem usadas, e criar um arquiv
 
 ```
 yarn react-native link
+```
+
+### Sessão 02
+
+#### Aula 01
+
+```
+yarn add react-native-vector-icons
+```
+
+No iOS, executar `npx pod-install ios`. Em seguida, adicionar a fonte Feather.ttf ao arquivo Info.plist na pasta ios.
+
+```
+<key>UIAppFonts</key>
+<array>
+  <string>RobotoSlab-Medium.ttf</string>
+  <string>RobotoSlab-Regular.ttf</string>
+  <string>Feather.ttf</string>
+</array>
+```
+
+No Android, alterar o arquivo android/app/build.gradle, adicionando as linhas:
+
+```
+project.ext.vectoricons = [
+  iconFontNames: ['Feather.ttf']
+];
+
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+```
+
+Finalmente, independente do dispositivo alvo:
+
+```
+yarn add -D @types/react-native-vector-icons
 ```
